@@ -1,0 +1,68 @@
+# Auto-generated from master.yaml by sync_configs.py
+# DO NOT EDIT MANUALLY - Edit master.yaml instead and run sync_configs.py
+
+seed: 42
+paths:
+  base_model_path: /workspace/models/Qwen3-1.7B/
+  tokenizer_path: null
+  input_json: /dev/null
+  output_dir: /dev/null
+  cache_dir: /dev/null
+  output_subdir: stability_neutral_plasticity_neutral-qwen3-1.7b-personality-ft
+  cache_subdir: hf_cache
+  dataset_filename: stability_neutral_plasticity_neutral.jsonl
+  dataset_path: /workspace/datasets/stability_neutral_plasticity_neutral.jsonl
+hf:
+  token: insert_your_token_here
+quantization:
+  load_in_4bit: false
+  bnb_4bit_quant_type: null
+  bnb_4bit_compute_dtype: null
+peft:
+  use_peft: true
+  lora_r: 32
+  lora_alpha: 8
+  lora_dropout: 0.1
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+data:
+  val_size: auto
+  add_system_message: false
+  system_message: ''
+training:
+  seed: 42
+  bf16: true
+  per_device_train_batch_size: auto
+  per_device_eval_batch_size: auto
+  gradient_accumulation_steps: auto
+  learning_rate: 0.0001
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  num_train_epochs: 3
+  logging_steps: 1
+  evaluation_strategy: epoch
+  save_strategy: epoch
+  save_total_limit: 2
+  report_to:
+  - tensorboard
+  packing: false
+  max_seq_length: 2048
+  max_grad_norm: 1.0
+  load_best_model_at_end: true
+  metric_for_best_model: eval_loss
+  greater_is_better: false
+  early_stopping_patience: 0
+  early_stopping_threshold: 0.001
+dgx:
+  remote_base: /workspace/ollama-personality-finetuning
+  conda_env: unsloth-env
+  cache_subdir: hf_cache
+  use_all_gpus: false

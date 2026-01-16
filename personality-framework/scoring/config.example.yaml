@@ -1,0 +1,13 @@
+# Example configuration for score_ocean_parquet.py
+# Relative paths are resolved against `base_dir`. Default is the config file's directory.
+base_dir: ../../../
+inputs:
+  - jic_dataset/train.json
+  - jic_dataset/test.json
+output: ./ocean_scores.parquet
+model_name: Minej/bert-base-personality
+# cache_dir defaults to $HF_HOME or ~/.cache/huggingface when omitted
+# cache_dir: .cache/huggingface
+log_level: INFO  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+buffer_size: 256
+batch_size: 64
